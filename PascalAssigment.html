@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <style>
+        .footer {
+            position: fixed;
+
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .number {
+            color: #002B45;
+            font-weight: bold;
+        }
+
+        #create {
+            background: #002B45;
+            color: white;
+            font-weight: bold;
+        }
+
+        #rows {
+            border: 1px solid #002B45;
+        }
+
+        .Result {
+            text-align: center;
+            color: #002B45;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 0px;
+        }
+
+        #Pascal {
+            color: #002B45;
+            font-weight: bold;
+            line-height: 34px;
+            white-space: inherit;
+            height: auto;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+
+    <script>
+        var firstArr = [1];
+        var curArr = [1, 1];
+        var starting = 1;
+
+        function parceltriangle() {
+            firstArr = [starting];
+            curArr = [starting, starting];
+            for (var i = 0; i <= rows; i++) {
+                if (rows > 2) {
+                    firstArr = curArr;
+                    curArr = new Array(i);
+                }
+                if (rows > 2)
+                    CreatingRows();
+            }
+        }
+
+        function CreatingRows() {
+            for (var i = 0; i < curArr.length; i++) {
+                if (i == 0 || i == curArr.length - 1) {
+                    curArr[i] = starting;
+                } else {
+                    curArr[i] = firstArr[i - 1] + firstArr[i];
+                }
+                $("#Pascal").append(curArr[i] + " ");
+            }
+            $("#Pascal").append("<br>");
+        }
+
+        $(document).ready(function () {
+            $("#create").click(function () {
+                rows = parseInt($("#rows").val());
+                $("#Pascal").text("");
+                $(".Result").show();
+                parceltriangle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar" style="background: black">
+        <div class="container-fluid">
+
+            <h1 style="text-align: center;color: white">Pascal Assigment </h1>
+
+
+        </div>
+    </nav>
+    <div class="container-fluid">
+
+        <div style="text-align: center;margin-top: 5%;">
+            <h1 style="padding-bottom: 20px;color: #002B45;text-transform: capitalize;">Sravankumar tangella Assigment</h1>
+            <label class="number"> Number of Rows</label>
+            <input id="rows" type="number" placeholder="Number of Rows" maxlength="2"> </input>
+            <button id="create" class="btn">Submit</button>
+        </div>
+
+        <div>
+            <p class="Result hide">Result</p>
+            <p id="Pascal" style="text-align: center;"></p>
+        </div>
+    </div>
+    <div class="footer">
+        <p style="margin-bottom: 0px">Email:kumar.tan@outlook.com</p>
+        <p style="margin-bottom: 0px">Phone:(510)-458-1632</p>
+        <a style="margin-bottom: 0px;color: white" href="https://update-portfolio.herokuapp.com/portfolio.html">Portfolio</a>
+    </div>
+
+</body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</html>
